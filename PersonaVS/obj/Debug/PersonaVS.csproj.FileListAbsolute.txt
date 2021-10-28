@@ -1,0 +1,11 @@
+F:\INTERFACES\PersonaVS\PersonaVS\bin\Debug\PersonaVS.exe.config
+F:\INTERFACES\PersonaVS\PersonaVS\bin\Debug\PersonaVS.exe
+F:\INTERFACES\PersonaVS\PersonaVS\bin\Debug\PersonaVS.pdb
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.csproj.AssemblyReference.cache
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.Form1.resources
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.Properties.Resources.resources
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.csproj.GenerateResource.cache
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.csproj.CoreCompileInputs.cache
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.exe
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.pdb
+F:\INTERFACES\PersonaVS\PersonaVS\obj\Debug\PersonaVS.Form2.resources
