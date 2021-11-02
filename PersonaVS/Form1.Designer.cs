@@ -32,11 +32,6 @@ namespace PersonaVS
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellido2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dNIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pERSONASBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.personasVSDataSet = new PersonaVS.PersonasVSDataSet();
             this.pERSONASBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -50,6 +45,7 @@ namespace PersonaVS
             this.btnAniadir = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnModif = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pERSONASBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personasVSDataSet)).BeginInit();
@@ -65,15 +61,7 @@ namespace PersonaVS
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombreDataGridViewTextBoxColumn,
-            this.apellido1DataGridViewTextBoxColumn,
-            this.apellido2DataGridViewTextBoxColumn,
-            this.dNIDataGridViewTextBoxColumn,
-            this.iDDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.pERSONASBindingSource3;
             this.dataGridView1.Location = new System.Drawing.Point(41, 108);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(6, 8, 8, 5);
             this.dataGridView1.MultiSelect = false;
@@ -82,46 +70,6 @@ namespace PersonaVS
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(730, 306);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // apellido1DataGridViewTextBoxColumn
-            // 
-            this.apellido1DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.apellido1DataGridViewTextBoxColumn.DataPropertyName = "Apellido1";
-            this.apellido1DataGridViewTextBoxColumn.HeaderText = "Apellido1";
-            this.apellido1DataGridViewTextBoxColumn.Name = "apellido1DataGridViewTextBoxColumn";
-            this.apellido1DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // apellido2DataGridViewTextBoxColumn
-            // 
-            this.apellido2DataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.apellido2DataGridViewTextBoxColumn.DataPropertyName = "Apellido2";
-            this.apellido2DataGridViewTextBoxColumn.HeaderText = "Apellido2";
-            this.apellido2DataGridViewTextBoxColumn.Name = "apellido2DataGridViewTextBoxColumn";
-            this.apellido2DataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dNIDataGridViewTextBoxColumn
-            // 
-            this.dNIDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dNIDataGridViewTextBoxColumn.DataPropertyName = "DNI";
-            this.dNIDataGridViewTextBoxColumn.HeaderText = "DNI";
-            this.dNIDataGridViewTextBoxColumn.Name = "dNIDataGridViewTextBoxColumn";
-            this.dNIDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // pERSONASBindingSource3
             // 
@@ -209,11 +157,22 @@ namespace PersonaVS
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnModif
+            // 
+            this.btnModif.Location = new System.Drawing.Point(524, 47);
+            this.btnModif.Name = "btnModif";
+            this.btnModif.Size = new System.Drawing.Size(102, 31);
+            this.btnModif.TabIndex = 6;
+            this.btnModif.Text = "Modificar";
+            this.btnModif.UseVisualStyleBackColor = true;
+            this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnModif);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAniadir);
@@ -253,14 +212,10 @@ namespace PersonaVS
         private System.Windows.Forms.BindingSource pERSONASBindingSource2;
         private System.Windows.Forms.BindingSource pERSONASBindingSource3;
         private System.Windows.Forms.BindingSource personasVSDataSetBindingSource1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellido2DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dNIDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnAniadir;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnModif;
     }
 }
 

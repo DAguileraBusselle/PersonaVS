@@ -11,16 +11,22 @@ using System.Windows.Forms;
 namespace PersonaVS
 {
     public partial class Form2 : Form
+
     {
+        
+        
         public Form2()
-        {
+        {           
             InitializeComponent();
         }
 
+        
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            var auxForm1 = new Form1();
-            var aux = new Persistencia();
+            Form1 auxForm1 = new Form1();
+            Persistencia aux = new Persistencia();
+
             String nom = txtNombre.Text.Trim();
             String ape1 = txtApellido1.Text.Trim();
             String ape2 = txtApellido2.Text.Trim();
@@ -32,6 +38,9 @@ namespace PersonaVS
             } else if (!isDNIValido(dni))
             {
                 MessageBox.Show("Debe introducir un dni valido");
+            } else if (aux.isDniRepetido(dni))
+            {
+                MessageBox.Show("El dni introducido ya existe en la base de datos");
             }
             else
             {
@@ -49,7 +58,7 @@ namespace PersonaVS
             }
         }
 
-        private Boolean isDNIValido(String dni)
+        public Boolean isDNIValido(String dni)
         {
             Boolean isValido = true;
 
@@ -112,9 +121,16 @@ namespace PersonaVS
             }
         }
 
-        private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-           
+            Form1 auxForm1 = new Form1();
+
+            txtNombre.ResetText();
+            txtApellido1.ResetText();
+            txtApellido2.ResetText();
+            txtDni.ResetText();
+            this.Hide();
+            auxForm1.Show();
         }
     }
 }

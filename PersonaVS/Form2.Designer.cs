@@ -34,6 +34,7 @@ namespace PersonaVS
             this.txtApellido2 = new System.Windows.Forms.TextBox();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.txtApellido1 = new System.Windows.Forms.TextBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -67,7 +68,6 @@ namespace PersonaVS
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(100, 20);
             this.txtDni.TabIndex = 4;
-            this.txtDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDni_KeyPress);
             // 
             // txtApellido1
             // 
@@ -77,11 +77,22 @@ namespace PersonaVS
             this.txtApellido1.TabIndex = 5;
             this.txtApellido1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido1_KeyPress);
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(398, 292);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 418);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtApellido1);
             this.Controls.Add(this.txtDni);
             this.Controls.Add(this.txtApellido2);
@@ -102,5 +113,6 @@ namespace PersonaVS
         private System.Windows.Forms.TextBox txtApellido2;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.TextBox txtApellido1;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

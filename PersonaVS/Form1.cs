@@ -12,33 +12,32 @@ namespace PersonaVS
 {
     public partial class Form1 : Form
     {
-        Form2 form2 = new Form2();
-
+     
+        public static int id = 0;
+        public static String nombre = "";
+        public static String ape1 = "";
+        public static String ape2 = "";
+        public static String dni = "";
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            Persistencia pers = new Persistencia();
+            pers.listar(dataGridView1);
             
-            var aux = new Persistencia();
-            aux.listar(dataGridView1);
-            
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            var aux = new Persistencia();
-
-            aux.filtrar(dataGridView1, this.textBox1.Text.Trim());
+            Persistencia pers = new Persistencia();
+            pers.filtrar(dataGridView1, this.textBox1.Text.Trim());
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -53,6 +52,7 @@ namespace PersonaVS
 
         private void btnAniadir_Click(object sender, EventArgs e)
         {
+            Form2 form2 = new Form2();
             this.Hide();
             form2.Show();
 
@@ -60,24 +60,43 @@ namespace PersonaVS
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var aux = new Persistencia();
+            Persistencia pers = new Persistencia();
+
             int id = Int32.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString());
 
             var res = MessageBox.Show("¿Quieres eliminar este usuario?", "¿Estás seguro?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (res == DialogResult.Yes)
             {
-                aux.eliminarDatos(id);
+                pers.eliminarDatos(id);
                 
-                aux.listar(dataGridView1);
+                pers.listar(dataGridView1);
             }
         }
 
+
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            Persistencia pers = new Persistencia();
 
-            var aux = new Persistencia();
-            aux.listar(dataGridView1);
+            pers.listar(dataGridView1);
+        }
+
+        private void btnModif_Click(object sender, EventArgs e)
+        {
+            FormModif formM = new FormModif();
+
+            nombre = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            ape1 = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            ape2 = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            dni = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value.ToString();
+            id = Int32.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString());
+
+            this.Hide();
+            formM.Show();
+
+            formM.setTxtsModif(nombre, ape1, ape2, dni);
         }
     }
 }

@@ -21,16 +21,11 @@ namespace PersonaVS
                 da.Fill(dt);
                 data.DataSource = dt;
                 data.Columns[4].Width = 35;
-                data.Columns[4].HeaderCell.Value = "ID";
-                
-                data.Columns[0].HeaderCell.Value = "Nombre";
-                
-                data.Columns[1].HeaderCell.Value = "Apellido1";
-                
-                data.Columns[2].HeaderCell.Value = "Apellido2";
-                
+                data.Columns[4].HeaderCell.Value = "ID";                
+                data.Columns[0].HeaderCell.Value = "Nombre";              
+                data.Columns[1].HeaderCell.Value = "Apellido1";               
+                data.Columns[2].HeaderCell.Value = "Apellido2";  
                 data.Columns[3].HeaderCell.Value = "DNI";
-
 
             }
             catch (Exception)
@@ -43,6 +38,60 @@ namespace PersonaVS
             }
 
 
+        }
+
+        public Boolean isDniRepetido(string dni)
+        {
+            Boolean isDniRep = true;
+            try
+            {
+                SqlCommand query = new SqlCommand("SELECT COUNT(*) FROM PERSONAS WHERE DNI = '" + dni + "'", Conexion.ObtenerConexion());
+
+                Int32 numFilas = (Int32) query.ExecuteScalar();
+                if(numFilas == 0)
+                {
+                    isDniRep = false;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+            return isDniRep;
+        }
+
+        public Boolean idIgualporDni(String dni, int id)
+        {
+            Boolean idIgual = false;
+
+            try
+            {
+                SqlCommand query = new SqlCommand("SELECT ID FROM PERSONAS WHERE DNI = '" + dni + "'", Conexion.ObtenerConexion());
+
+                Int32 idQuery = (Int32)query.ExecuteScalar();
+                if (idQuery == id)
+                {
+                    idIgual = true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
+            return idIgual;
         }
 
         public void filtrar(DataGridView data, string buscarnombre)
@@ -68,6 +117,38 @@ namespace PersonaVS
             {
                 Conexion.CerrarConexion();
             }
+        }
+
+        public Boolean modificarDatos(String nombre, String ape1, String ape2, String dni, int id)
+        {
+            Boolean operacionExitosa = false;
+            try
+            {
+                SqlCommand query = new SqlCommand("UPDATE PERSONAS SET NOMBRE = '" + nombre + "', APELLIDO1 = '" + ape1 + "', APELLIDO2 = '" + ape2 + "', DNI = '" + dni + "' WHERE ID = '" + id + "' ", Conexion.ObtenerConexion());
+
+                int r = query.ExecuteNonQuery();
+
+                if (r > 0)
+                {
+                    MessageBox.Show("Datos guardados");
+                    operacionExitosa = true;
+                }
+                else
+                {
+                    MessageBox.Show("No se han podido guardar los datos");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+            return operacionExitosa;
         }
 
         public Boolean introducirDatos(String nombre, String ape1, String ape2, String dni)
