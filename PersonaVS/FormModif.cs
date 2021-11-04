@@ -13,14 +13,14 @@ namespace PersonaVS
 {
     public partial class FormModif : Form
     {
-        
-        
+
+
+       
         
 
         public FormModif()
         {
             InitializeComponent();
-            
 
         }
 
@@ -36,10 +36,10 @@ namespace PersonaVS
 
         private void btnCancelModif_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            
 
             this.Close();
-            form1.Show();
+            
 
         }
 
@@ -66,17 +66,21 @@ namespace PersonaVS
 
                 if (res == DialogResult.Yes)
                 {
-                    this.Close();
-                    form1.Show();
+                    form1.refrescar();
+                    this.Hide();
+                   
                 }
             } else
             {
                 Boolean modifGuardado = per.modificarDatos(txtNombreModif.Text.Trim(), txtApe1Modif.Text.Trim(), txtApe2Modif.Text.Trim(), txtDniModif.Text.Trim(), Form1.id);
+                
+                this.Hide();
+                
+                form1.refrescar();
 
-                this.Close();
-                form1.Show();
+
             }
-            
+
         }
     }
 }

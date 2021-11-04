@@ -52,7 +52,9 @@ namespace PersonaVS
                 if (aux.introducirDatos(nom, ape1, ape2, dni))
                 {
                     this.Hide();
-                    auxForm1.Show();
+
+                    auxForm1.refrescar();
+
                 }
 
             }
@@ -130,7 +132,13 @@ namespace PersonaVS
             txtApellido2.ResetText();
             txtDni.ResetText();
             this.Hide();
-            auxForm1.Show();
+            
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

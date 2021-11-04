@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>EPqyUC1WsAY_MRw.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eco.Handles, Version=7.0.0.13485, Culture=neutral, PublicKeyToken=46a833be9e90de8c, processorArchitecture=MSIL">
       <HintPath>..\packages\EcoCore.7.0.0.13485\lib\net40\Eco.Handles.dll</HintPath>
@@ -135,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EPqyUC1WsAY_MRw.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
