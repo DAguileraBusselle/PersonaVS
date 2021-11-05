@@ -15,7 +15,6 @@ namespace PersonaVS
     {
 
 
-       
         
 
         public FormModif()
@@ -45,19 +44,23 @@ namespace PersonaVS
 
         private void btnGuardarModif_Click(object sender, EventArgs e)
         {
+            lblAdvertencia.ResetText();
             Form2 form2 = new Form2();
             Form1 form1 = new Form1();
             Persistencia per = new Persistencia();
 
+
+            
+
             if (txtNombreModif.Text.Length == 0 || txtApe1Modif.Text.Length == 0 || txtApe2Modif.Text.Length == 0 ||txtDniModif.Text.Length == 0)
             {
-                MessageBox.Show("Debe rellenar todos los campos");
+                lblAdvertencia.Text ="Debe rellenar todos los campos";
             } else if (!form2.isDNIValido(txtDniModif.Text))
             {
-                MessageBox.Show("Debe introducir un DNI válido (12345678A)");
+                lblAdvertencia.Text ="Debe introducir un DNI válido (12345678A)";
             } else if (per.isDniRepetido(txtDniModif.Text) && !per.idIgualporDni(txtDniModif.Text, Form1.id))
             {
-                MessageBox.Show("El DNI introducido ya está ligado a otro registro");
+                lblAdvertencia.Text = "El DNI introducido ya está ligado a otro registro";
             } else if (txtNombreModif.Text.Equals(Form1.nombre) && txtApe1Modif.Text.Equals(Form1.ape1) && txtApe2Modif.Text.Equals(Form1.ape2) && txtDniModif.Text.Equals(Form1.dni))
             {
                 
@@ -81,6 +84,33 @@ namespace PersonaVS
 
             }
 
+        }
+
+        private void txtNombreModif_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char caracter = e.KeyChar;
+            if (Char.IsNumber(caracter))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtApe1Modif_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char caracter = e.KeyChar;
+            if (Char.IsNumber(caracter))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtApe2Modif_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char caracter = e.KeyChar;
+            if (Char.IsNumber(caracter))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

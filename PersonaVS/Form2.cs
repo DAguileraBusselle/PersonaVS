@@ -34,13 +34,13 @@ namespace PersonaVS
 
             if (txtNombre.Text.Length == 0 || txtApellido1.Text.Length == 0 || txtApellido2.Text.Length == 0)
             {
-                MessageBox.Show("Debe rellenar todos los campos");
+                lblAdvertencia.Text = "Debe rellenar todos los campos";
             } else if (!isDNIValido(dni))
             {
-                MessageBox.Show("Debe introducir un dni valido");
+                lblAdvertencia.Text = "Debe introducir un dni valido";
             } else if (aux.isDniRepetido(dni))
             {
-                MessageBox.Show("El dni introducido ya existe en la base de datos");
+                lblAdvertencia.Text = "El dni introducido ya existe en la base de datos";
             }
             else
             {
@@ -136,9 +136,10 @@ namespace PersonaVS
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        
 
-        }
+        
+
+        
     }
 }

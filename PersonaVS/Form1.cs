@@ -34,7 +34,7 @@ namespace PersonaVS
         private void Form1_Load(object sender, EventArgs e)
         {
             Persistencia pers = new Persistencia();
-            dataGridView1.DataSource = pers.rellenarTabla();
+            pers.listar(dataGridView1);
 
 
         }
@@ -93,31 +93,26 @@ namespace PersonaVS
             {
                 pers.eliminarDatos(id);
 
-                dataGridView1.DataSource = pers.rellenarTabla();
+                pers.listar(dataGridView1);
 
             }
         }
 
 
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            Persistencia pers = new Persistencia();
-
-            dataGridView1.DataSource = pers.rellenarTabla();
-        }
+        
 
         private void btnModif_Click(object sender, EventArgs e)
         {
             FormModif formM = new FormModif();
             Persistencia pers = new Persistencia();
-
             
-            nombre = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString();
-            ape1 = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[1].Value.ToString();
-            ape2 = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value.ToString();
-            dni = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value.ToString();
-            id = Int32.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString());
+            
+            nombre = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[1].Value.ToString();
+            ape1 = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            ape2 = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value.ToString();
+            dni = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString();
+            id = Int32.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString());
 
             
 
@@ -134,20 +129,28 @@ namespace PersonaVS
 
         public void refrescar()
         {
-            // this.pERSONASTableAdapter1.Fill(this.personasVSDataSet.PERSONAS);
-            //dataGridView1.DataSource = personasVSDataSet;
-
-            
+           
             Persistencia pers = new Persistencia();
 
-            dataGridView1.DataSource = pers.rellenarTabla();
-            MessageBox.Show("prueba");
+            pers.listar(this.dataGridView1);
+
+            textBox1.ResetText();
 
         }
 
 
         
 
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            Persistencia pers = new Persistencia();
 
+            pers.listar(this.dataGridView1);
+            textBox1.ResetText();
+        }
+
+
+
+       
     }
 }

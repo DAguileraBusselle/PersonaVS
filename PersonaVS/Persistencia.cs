@@ -11,32 +11,27 @@ namespace PersonaVS
 {
     class Persistencia
     {
-        public DataTable rellenarTabla()
+        public void listar(DataGridView data)
         {
-            DataTable dt = new DataTable();
-            
+            try
             {
-                try
-                {
-                SqlCommand cmd = new SqlCommand("select * from PERSONAS", Conexion.ObtenerConexion());
+                SqlDataAdapter da = new SqlDataAdapter("mostrar_registros", Conexion.ObtenerConexion());
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                data.DataSource = dt;
                 
-                SqlDataAdapter ad = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                ad.Fill(ds);
-                dt = ds.Tables[0];
-                return dt;
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-                finally
-                {
-                    Conexion.CerrarConexion();
-                }
 
             }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Conexion.CerrarConexion();
+            }
+
 
         }
 
