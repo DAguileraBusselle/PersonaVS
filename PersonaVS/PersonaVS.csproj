@@ -113,6 +113,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="PersonasVSDataSet.xsc">
@@ -141,6 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EPqyUC1WsAY_MRw.ico" />
+    <None Include="Resources\Moai sound.mp3.wav" />
+    <None Include="Resources\sound.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

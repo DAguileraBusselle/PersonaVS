@@ -12,8 +12,9 @@ namespace PersonaVS
 {
     public partial class Form1 : Form
     {
+        private static System.IO.Stream str = Properties.Resources.sound;
+        private static System.Media.SoundPlayer player = new System.Media.SoundPlayer(str);
 
-       
         public static int id = 0;
         public static String nombre = "";
         public static String ape1 = "";
@@ -84,11 +85,11 @@ namespace PersonaVS
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Persistencia pers = new Persistencia();
-
-            int id = Int32.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[4].Value.ToString());
-
+            
+            int id = Int32.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString());
+            player.Play();
             var res = MessageBox.Show("¿Quieres eliminar este usuario?", "¿Estás seguro?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+            
             if (res == DialogResult.Yes)
             {
                 pers.eliminarDatos(id);

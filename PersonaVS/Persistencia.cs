@@ -11,6 +11,12 @@ namespace PersonaVS
 {
     class Persistencia
     {
+        private static System.IO.Stream str = Properties.Resources.sound;
+        private static System.Media.SoundPlayer player = new System.Media.SoundPlayer(str);
+
+        private static System.IO.Stream strMoai = Properties.Resources.moai;
+        private static System.Media.SoundPlayer playMoai = new System.Media.SoundPlayer(strMoai);
+
         public void listar(DataGridView data)
         {
             try
@@ -125,6 +131,7 @@ namespace PersonaVS
 
                 if (r > 0)
                 {
+                    player.Play();
                     MessageBox.Show("Datos guardados");
                     operacionExitosa = true;
                 }
@@ -157,6 +164,7 @@ namespace PersonaVS
 
                 if (r > 0)
                 {
+                    player.Play();
                     MessageBox.Show("Datos guardados");
                     operacionExitosa = true;
                 } else
@@ -188,8 +196,10 @@ namespace PersonaVS
 
                 if (r > 0)
                 {
-                    MessageBox.Show("Se ha eliminado correctamente el usuario");
+                    playMoai.Play();
+                    MessageBox.Show("LA PERSONA HA SIDO DESTRUIDA");
                     operacionExitosa = true;
+
                 }
                 else
                 {
