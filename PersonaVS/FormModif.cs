@@ -80,9 +80,20 @@ namespace PersonaVS
                 }
             } else
             {
+                string[] nomSplit = txtNombreModif.Text.Trim().Split(' ');
+                String nom = "";
+                foreach (string str in nomSplit)
+                {
 
-                
-                String nom = txtNombreModif.Text.Trim().ToUpper().Substring(0, 1) + txtNombreModif.Text.Trim().ToLower().Substring(1, txtNombreModif.Text.Trim().Length - 1);
+                    String newStr = "";
+
+                    newStr = str.ToUpper().Substring(0, 1) + str.ToLower().Substring(1, str.Length - 1);
+
+
+                    nom += newStr + " ";
+                }
+
+                //String nom = txtNombreModif.Text.Trim().ToUpper().Substring(0, 1) + txtNombreModif.Text.Trim().ToLower().Substring(1, txtNombreModif.Text.Trim().Length - 1);
 
 
                 /*char[] chNombre = nom.ToCharArray();
@@ -96,10 +107,27 @@ namespace PersonaVS
                     else { nom += chNombre[i].ToString().ToLower(); }
                 }*/
 
-                
 
-                
-                String ape1 = txtApe1Modif.Text.Trim().ToUpper().Substring(0, 1) + txtApe1Modif.Text.Trim().ToLower().Substring(1, txtApe1Modif.Text.Trim().Length - 1);
+                string[] ape1Split = txtApe1Modif.Text.Trim().Split(' ');
+                String ape1 = "";
+                foreach (string str in ape1Split)
+                {
+
+                    String newStr = "";
+                    if (str.ToLower().Equals("del") || str.ToLower().Equals("de") || str.ToLower().Equals("la"))
+                    {
+                        newStr = str.ToLower();
+
+                    }
+                    else
+                    {
+                        newStr = str.ToUpper().Substring(0, 1) + str.ToLower().Substring(1, str.Length - 1);
+                    }
+
+                    ape1 += newStr + " ";
+                }
+
+                //String ape1 = txtApe1Modif.Text.Trim().ToUpper().Substring(0, 1) + txtApe1Modif.Text.Trim().ToLower().Substring(1, txtApe1Modif.Text.Trim().Length - 1);
 
 
                 /*char[] chApe1 = ape1.ToCharArray();
@@ -112,9 +140,27 @@ namespace PersonaVS
                     }
                     else { ape1 += chApe1[i].ToString().ToLower(); }
                 }*/
-                 
 
-                String ape2 = txtApe2Modif.Text.Trim().ToUpper().Substring(0, 1) + txtApe2Modif.Text.Trim().ToLower().Substring(1, txtApe2Modif.Text.Trim().Length - 1);
+                string[] ape2Split = txtApe2Modif.Text.Trim().Split(' ');
+                String ape2 = "";
+                foreach (string str in ape2Split)
+                {
+
+                    String newStr = "";
+                    if (str.ToLower().Equals("del") || str.ToLower().Equals("de") || str.ToLower().Equals("la"))
+                    {
+                        newStr = str.ToLower();
+
+                    }
+                    else
+                    {
+                        newStr = str.ToUpper().Substring(0, 1) + str.ToLower().Substring(1, str.Length - 1);
+                    }
+
+                    ape2 += newStr + " ";
+                }
+
+                //String ape2 = txtApe2Modif.Text.Trim().ToUpper().Substring(0, 1) + txtApe2Modif.Text.Trim().ToLower().Substring(1, txtApe2Modif.Text.Trim().Length - 1);
 
 
                 /*char[] chApe2 = ape2.ToCharArray();
@@ -131,11 +177,14 @@ namespace PersonaVS
                 String dni = txtDniModif.Text.Trim().Substring(0, 8) + txtDniModif.Text.Trim().ToUpper().Substring(8, 1);
 
 
-                Boolean modifGuardado = per.modificarDatos(nom, ape1, ape2, dni, Form1.id);
-                
+                if (per.modificarDatos(nom, ape1.Trim(), ape2.Trim(), dni, Form1.id))
+                {
                 this.Hide();
                 
                 form1.refrescar();
+                }
+                
+                
 
 
             }

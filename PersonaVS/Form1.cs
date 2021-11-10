@@ -67,7 +67,7 @@ namespace PersonaVS
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char caracter = e.KeyChar;
-            if (Char.IsNumber(caracter))
+            if (!Char.IsLetter(caracter) && !caracter.Equals('\b') && !caracter.Equals(' '))
             {
                 e.Handled = true;
             }

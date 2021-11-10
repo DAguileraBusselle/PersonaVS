@@ -198,6 +198,7 @@ namespace PersonaVS
                 {
                     playMoai.Play();
                     MessageBox.Show("LA PERSONA HA SIDO DESTRUIDA");
+                    playMoai.Stop();
                     operacionExitosa = true;
 
                 }
