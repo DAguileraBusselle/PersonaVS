@@ -81,8 +81,6 @@
     <Compile Include="FormModif.Designer.cs">
       <DependentUpon>FormModif.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistencia.cs" />
-    <Compile Include="Conexion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

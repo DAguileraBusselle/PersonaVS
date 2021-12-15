@@ -44,15 +44,38 @@ namespace PersonaVS
 
         }
 
+        public Boolean idIgualPorDNI(String dni, int id)
+        {
+
+
+            Boolean idIgual = true;
+
+            String dniComp = "";
+
+            int idComp = 0;
+
+            int contFilas = Form1.dtPersonas.Tables[0].Rows.Count;
+
+            for (int i = 0; i < contFilas; i++)
+            {
+                
+                dniComp = Form1.dtPersonas.Tables[0].Rows[i][3].ToString();
+                idComp = Int32.Parse(Form1.dtPersonas.Tables[0].Rows[i][4].ToString());
+                if (dni.Equals(dniComp) && id != idComp)
+                {
+                    idIgual = false;
+                }
+            }
+
+            return idIgual;
+        }
+
         private void btnGuardarModif_Click(object sender, EventArgs e)
         {
             lblAdvertencia.ResetText();
             Form2 form2 = new Form2();
             Form1 form1 = new Form1();
-            Persistencia per = new Persistencia();
-
-
-            
+                      
 
             if (txtNombreModif.Text.Length == 0 || txtApe1Modif.Text.Length == 0 || txtApe2Modif.Text.Length == 0 ||txtDniModif.Text.Length == 0)
             {
@@ -62,7 +85,7 @@ namespace PersonaVS
             {
                 player.Play();
                 lblAdvertencia.Text ="Debe introducir un DNI válido (12345678A)";
-            } else if (per.isDniRepetido(txtDniModif.Text) && !per.idIgualporDni(txtDniModif.Text, Form1.id))
+            } else if (form2.isDNIRepetido(txtDniModif.Text) && !idIgualPorDNI(txtDniModif.Text, Form1.id))
             {
                 player.Play();
                 lblAdvertencia.Text = "El DNI introducido ya está ligado a otro registro";
@@ -74,7 +97,7 @@ namespace PersonaVS
 
                 if (res == DialogResult.Yes)
                 {
-                    form1.refrescar();
+                   
                     this.Hide();
                    
                 }
@@ -176,13 +199,26 @@ namespace PersonaVS
 
                 String dni = txtDniModif.Text.Trim().Substring(0, 8) + txtDniModif.Text.Trim().ToUpper().Substring(8, 1);
 
+                int contFilas = Form1.dtPersonas.Tables[0].Rows.Count;
 
-                if (per.modificarDatos(nom, ape1.Trim(), ape2.Trim(), dni, Form1.id))
-                {
+                for (int i = 0; i < contFilas; i++)
+                {                    
+                    int idComp = Int32.Parse(Form1.dtPersonas.Tables[0].Rows[i][4].ToString());
+                    if (Form1.id == idComp)
+                    {
+                        Form1.dtPersonas.Tables[0].Rows[i][0] = nom;
+                        Form1.dtPersonas.Tables[0].Rows[i][1] = ape1;
+                        Form1.dtPersonas.Tables[0].Rows[i][2] = ape2;
+                        Form1.dtPersonas.Tables[0].Rows[i][3] = dni;
+                    }
+                }
+
+                
+                
                 this.Hide();
                 
-                form1.refrescar();
-                }
+                
+                
                 
                 
 

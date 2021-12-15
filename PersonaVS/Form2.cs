@@ -27,7 +27,7 @@ namespace PersonaVS
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Form1 auxForm1 = new Form1();
-            Persistencia aux = new Persistencia();
+           
 
             String nom = txtNombre.Text.Trim();
             String ape1 = txtApellido1.Text.Trim();
@@ -42,7 +42,7 @@ namespace PersonaVS
             {
                 player.Play();
                 lblAdvertencia.Text = "Debe introducir un dni valido (12345678A)";
-            } else if (aux.isDniRepetido(dni))
+            } else if (isDNIRepetido(dni))
             {
                 player.Play();
                 lblAdvertencia.Text = "El dni introducido ya existe en la base de datos";
@@ -135,14 +135,27 @@ namespace PersonaVS
 
                 dni = txtDni.Text.Trim().Substring(0, 8) + txtDni.Text.Trim().ToUpper().Substring(8, 1);
 
+                //int id = (Int32.Parse(auxForm1.dataGridView1.Rows[auxForm1.dataGridView1.Rows.Count].Cells[4].Value.ToString())) + 1;
+                int id = Int32.Parse(Form1.dtPersonas.Tables[0].Rows[Form1.dtPersonas.Tables[0].Rows.Count - 1][4].ToString()) + 1;
 
-                if (aux.introducirDatos(nom.Trim(), ape1.Trim(), ape2.Trim(), dni))
+
+                Form1.dtPersonas.Tables[0].Rows.Add(nom, ape1, ape2, dni, id);
+
+
+                //Form1.dtPersonas.AcceptChanges();
+
+
+                this.Hide();
+
+                
+
+                /*if (aux.introducirDatos(nom.Trim(), ape1.Trim(), ape2.Trim(), dni))
                 {
                     this.Hide();
 
                     auxForm1.refrescar();
 
-                }
+                }*/
 
             }
         }
@@ -175,6 +188,30 @@ namespace PersonaVS
 
 
             return isValido;
+        }
+
+        public Boolean isDNIRepetido(String dni)
+        {
+            
+
+            Boolean isRepetido = false;
+
+            String dniComp = "";
+
+            int contFilas = Form1.dtPersonas.Tables[0].Rows.Count; 
+
+            for (int i = 0; i < contFilas; i++)
+            {
+                //.Tables[0].Cells[3].Value.ToString()
+
+                dniComp = Form1.dtPersonas.Tables[0].Rows[i][3].ToString();
+                if(dni.Equals(dniComp))
+                {
+                    isRepetido = true;
+                }
+            }
+
+            return isRepetido;
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
